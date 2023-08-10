@@ -1,0 +1,428 @@
+{% extends 'employer/master.html'%}
+
+{% load static %}
+
+{% block content %}
+
+
+<div class="container">
+  
+  <form method="post" id="myForm" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row mt-5 mb-5">
+      <h5 class="mt-4">Employee onboarding</h5>
+      <div class="w-100 bg-light "></div>
+      <div class="row mt-2">
+        <div class="col-md-12">
+          <!-- First horizontal ruler -->
+          <hr>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+
+          <span class="float-end"><a href="employeelist" class="btn btn-info fw-bold text-white">Cancel</a><button
+              type="submit" class="btn btn-outline-info fw-bold ms-1 myhover" name="submit">Add Employee</button></span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Second horizontal ruler -->
+          <hr>
+        </div>
+      </div>
+      
+      <div class="alert alert-success" role="alert">
+        {{ success_msg }}
+</div>
+      <!-- <div class="text-end mt-5"><a href="employeelist" class="btn btn-info fw-bold text-white">Cancel</a><button type="submit" class="btn btn-outline-info fw-bold ms-1 myhover">Add Employee</button></div> -->
+      <div class="col-sm-12 mt-3">
+        <div class="card">
+
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-6 mt-1">
+                <div class="card border-0">
+                  <div class="card-body ">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <!-- First horizontal ruler -->
+                        <hr>
+                      </div>
+                      <div class="col-md-4">
+                        <span>Personal Details</span>
+                      </div>
+                      <div class="col-md-4">
+                        <!-- Second horizontal ruler -->
+                        <hr>
+                      </div>
+                    </div>
+
+
+
+
+                    <div class="mb-2">
+                      <label for="firstName" class="form-label">First Name</label>
+                      <input type="text" class="form-control" id="firstName" name="fname">
+                    </div>
+                    <div class="mb-2">
+                      <label for="secondName" class="form-label">Last Name </label>
+                      <input type="text" class="form-control" id="secondName" name="sname">
+                    </div>
+                    <div class="mb-2">
+                      <label for="fromDate" class="form-label">Date of Birth</label>
+                      <input type="date" class="form-control" id="fromDate" name="dob">
+                    </div>
+                    <div class="mb-2">
+                      <label for="employeeEmail" class="form-label">Email ID</label>
+                      <input type="email" class="form-control" id="employeeEmail" name="email">
+                    </div>
+                    <div class="mb-2">
+                      <label for="employeePhone" class="form-label">Contact Number</label>
+                      <input type="number" class="form-control" id="employeePhone" name="phone">
+                    </div>
+                    <div class="mb-3 mt-4">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="genderMale" value="Male">
+                        <label class="form-check-label" for="genderMale">Male</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="Female">
+                        <label class="form-check-label" for="genderFemale">Female</label>
+                      </div>
+                    </div>
+                    <div class="mb-2">
+                      <label for="permanentAddress" class="form-label"> Permanent Address</label>
+                      <textarea class="form-control" id="permanentAddress" rows="3" name="permanentAdd"></textarea>
+                    </div>
+                    <div class="mb-2">
+                      <label for="localAddress" class="form-label"> Local Address</label>
+                      <textarea class="form-control" id="localAddress" rows="3" name="localAdress"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                      <label for="employeeImage" class="form-label">Photo</label>
+                      <input type="file" class="form-control" id="employeeImage" name="pic">
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <!-- First horizontal ruler -->
+                        <hr>
+                      </div>
+                      <div class="col-md-4">
+                        <span>Family Details</span>
+                      </div>
+                      <div class="col-md-4">
+                        <!-- Second horizontal ruler -->
+                        <hr>
+                      </div>
+                    </div>
+                    <div class="mb-2">
+                      <label for="fatherName" class="form-label">Father Name</label>
+                      <input type="text" class="form-control" id="fatherName" name="fatherName">
+                    </div>
+                    <div class="mb-2">
+                      <label for="motherName" class="form-label">Mother Name</label>
+                      <input type="text" class="form-control" id="motherName" name="motherName">
+                    </div>
+                    <div class="mb-2">
+                      <label for="contactNumber" class="form-label">Contact Number</label>
+                      <input type="number" class="form-control" id="contactNumber" name="contactNumb">
+                    </div>
+                    <div class="mb-2 mt-3">
+                      <label for="maraggeStatus" class="form-label">Martial Status </label>
+                      <select class="form-select" id="maraggeStatus" name="maraggeStatus">
+                        <option selected value="0">select</option>
+                        <option value="1">Yes</option>
+                        <option value="2">No</option>
+                      </select>
+                    </div>
+                    <div class="mb-2" id="hiddenSection">
+                      <label for="hiddenInput" class="form-label">Spouse Name</label>
+                      <input type="text" class="form-control" id="hiddenInput" name="spouseName">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 mt-2">
+                <div class="card border-0">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <!-- First horizontal ruler -->
+                        <hr>
+                      </div>
+                      <div class="col-md-4">
+                        <span>Bank Details</span>
+                      </div>
+                      <div class="col-md-4">
+                        <!-- Second horizontal ruler -->
+                        <hr>
+                      </div>
+                    </div>
+                    <div class="mb-2">
+                      <label for="accountName" class="form-label">Account Holder Name</label>
+                      <input type="text" class="form-control" id="accountName" name="accountHolderName">
+                    </div>
+                    <div class="mb-2">
+                      <label for="accountNumber" class="form-label">Account Number</label>
+                      <input type="number" class="form-control" id="accountNumber" name="accountNumber">
+                    </div>
+                    <div class="mb-2">
+                      <label for="bankName" class="form-label">Bank Name</label>
+                      <input type="text" class="form-control" id="bankName" name="bankName">
+                    </div>
+                    <div class="mb-4">
+                      <label for="branch" class="form-label">Branch</label>
+                      <input type="text" class="form-control" id="branch" name="branch">
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <!-- First horizontal ruler -->
+                        <hr>
+                      </div>
+                      <div class="col-md-4">
+                        <span>Company Detail</span>
+                      </div>
+                      <div class="col-md-4">
+                        <!-- Second horizontal ruler -->
+                        <hr>
+                      </div>
+                    </div>
+                    <div class="mb-2">
+                      <label for="department" class="form-label">Department</label>
+                      <select class="form-select" id="department" name="depName">
+                        <option selected value="">select</option>
+                        {% for dep in department %}
+                        <option value="{{ dep.id }}">{{ dep.dpartment_name }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="mb-2">
+                      <label for="positionSelect" class="form-label">Position</label>
+                      <select class="form-select" id="positionSelect" name="posName">
+                        <option selected value="">select</option>
+                        
+                      </select>
+                    </div>
+                    <div class="mb-2">
+                      <label for="reportingManger" class="form-label">Reporting Manger</label>
+                      <select class="form-select" id="reportingManger" name="reportingManger">
+                        <option selected value="">select</option>
+                        
+                      </select>
+                    </div>
+
+                    <div class="mb-4">
+                      <label for="dateJoining" class="form-label">Date of joining</label>
+                      <input type="date" class="form-control" id="dateJoining" name="dateofjoin">
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <!-- First horizontal ruler -->
+                        <hr>
+                      </div>
+                      <div class="col-md-4">
+                        <span>Financial Details</span>
+                      </div>
+                      <div class="col-md-4">
+                        <!-- Second horizontal ruler -->
+                        <hr>
+                      </div>
+                    </div>
+                    <div class="mb-4">
+                      <label for="salary" class="form-label">Basic Salary</label>
+                      <input type="number" class="form-control" id="salary" name="baseSalary">
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <!-- First horizontal ruler -->
+                        <hr>
+                      </div>
+                      <div class="col-md-4">
+                        <span>Account Login</span>
+                      </div>
+                      <div class="col-md-4">
+                        <!-- Second horizontal ruler -->
+                        <hr>
+                      </div>
+                    </div>
+                    <div class="mb-2">
+                      <label for="emp_id" class="form-label">Employee ID</label>
+                      <input type="text" class="form-control" id="emp_id"  name="EmpId">
+                    </div>
+                    <div class="mb-2">
+                      <label for="empPassword" class="form-label">Password</label>
+                      <input type="password" class="form-control" id="empPassword" name="empPassword">
+                    </div>
+                    <div class="mb-2">
+                      <label for="confPassword" class="form-label">Conform Password</label>
+                      <input type="password" class="form-control" id="confPassword" name="confPassword">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </form>
+</div>
+
+
+
+
+
+
+<script>
+  $(document).ready(function () {
+    $.ajaxSetup({
+              headers: {
+                "X-CSRFToken": '{{ csrf_token }}'
+              }
+          })
+      $("#department").change(function(){
+        depId = $(this).val()
+        $.ajax({
+              url:"{% url 'employer:selectPos' %}",
+              data:{
+                'dep_id':depId ,
+                 
+  
+              },
+              method : 'POST',
+              dataType: 'json',
+              success: function(response){
+                $('#positionSelect option:not(:first)').remove();
+                for (var i = 0; i < response.length; i++) {
+            var position = response[i];
+            $('#positionSelect').append('<option value="' + position.id + '">' + position.position_name + '</option>');
+          }
+                
+              
+                
+              }
+              
+              
+            })
+       })
+
+
+
+
+
+
+    var selectMartialStatus = $('#maraggeStatus');
+    var hiddenSection = $('#hiddenSection');
+    hiddenSection.hide();
+    selectMartialStatus.on('change', function () {
+      if (selectMartialStatus.val() == '1') {
+        hiddenSection.show();
+      }
+      else {
+        hiddenSection.hide();
+
+      }
+    });
+    $('#myForm').validate({
+
+      rules: {
+        fname: {
+          required: true
+        },
+        sname: {
+          required: true
+        },
+        dob: {
+          required: true
+        },
+        gender: {
+          required: true
+        },
+        permanentAdd: {
+          required: true
+        },
+        fatherName: {
+          required: true
+        },
+        accountNumber: {
+          required: true
+        },
+        dateofjoin: {
+          required: true
+        },
+        depName: {
+          required: true
+        },
+        posName: {
+          required: true
+        },
+        baseSalary: {
+          required: true
+        },
+        contactNumb: {
+          required: true,
+          phoneUS: true
+        },
+
+        empPassword: {
+          required: true
+        },
+        confPassword: {
+          equalTo: "#empPassword"
+        },
+
+        pic: {
+          required: true,
+          extension: "jpg|jpeg|png|pdf"
+
+        },
+        phone: {
+          required: true,
+          phoneUS: true
+        },
+        email: {
+          required: true,
+          email: true
+        }
+      },
+      messages: {
+        fname: 'Please enter your  first name',
+        sname: 'Please enter your  last name',
+        dob: 'please enter the feild',
+        permanentAdd: 'please enter the felid',
+        depName: 'please select',
+        posName: 'please select',
+        baseSalary: 'please enter employee salary',
+        pic: {
+          required: 'Please upload file',
+          extension: 'File must be JPG, GIF or PNG',
+
+        },
+        contactNumb: {
+          required: 'Please enter your phone number',
+          phoneUS: 'Please enter a valid US phone number'
+        },
+        phone: {
+          required: 'Please enter your phone number',
+          phoneUS: 'Please enter a valid US phone number'
+        },
+        email: {
+          required: 'Please enter your email address',
+          email: 'Please enter a valid email address'
+        }
+      }
+
+    });
+  });
+</script>
+
+{% endblock %}

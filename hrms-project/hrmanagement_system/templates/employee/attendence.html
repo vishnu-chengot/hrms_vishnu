@@ -1,0 +1,127 @@
+{% extends 'employee/master.html'%}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+  <div class="mt-5 pt-5">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">Attendence</div>
+        <div class="card-body">
+          <div class="text-center table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  
+                  <th scope="col">Date</th>
+                  <th scope="col">Clock In</th>
+                  <th scope="col">Clock Out</th>
+                  <th scope="col">Work Hour</th>
+                  <th scope="col">Remark</th>
+                  <th scope="col">Regularisation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <!-- <th scope="row">1</th> -->
+                  <td>30-12-2022</td>
+                  <td>9:00 am</td>
+                  <td>6:00 pm</td>
+                  <td>8:00hr</td>
+                  <td class="text-success">present</td>
+                  <td><button type="button" class="btn btn-link text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal">Regularize</button></td>
+                </tr>
+                <tr>
+                  <!-- <th scope="row">2</th> -->
+                  <td>31-12-2022</td>
+                  <td>--</td>
+                  <td>--</td>
+                  <td>--</td>
+                  <td class="text-danger">Absent</td>
+                  <td><button type="button" class="btn btn-link text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal">Regularize</button></td>
+                  
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+ 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-light">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Leave Application</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-3 col-form-label text-lg-end">Employee ID :</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="inputEmail3">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="inputPassword3" class="col-sm-3 col-form-label text-lg-end">Leave Type :</label>
+            <div class="col-sm-9">
+              <select class="form-select" aria-label="Default select example">
+                <option selected>select</option>
+                <option value="1">Casual Leave</option>
+                <option value="2">Sick Leave</option>
+                <option value="3">Earned Leave</option>
+                <option value="3">Leave Without Pay</option>
+                
+              </select>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <label for="inputPassword3" class="col-sm-2 col-form-label fs-5 mt-3 text-lg-end">Date :</label>
+            <div class="col-sm-5 mt-3">
+              
+              <input type="date" class="form-control" id="floatingInput" placeholder="name@example.com">
+              
+            </div>
+            <div class="col-sm-5 mt-3">
+              <input type="date" class="form-control" id="floatingInput" placeholder="name@example.com">
+              
+            </div>
+            </div>
+          
+          <div class="row mb-3 mt-2">
+            <label for="inputEmail3" class="col-sm-3 col-form-label text-lg-end">Notify @ :</label>
+            <div class="col-sm-9">
+              <input type="email" class="form-control" id="inputEmail3">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-3 col-form-label text-lg-end">Reson For Leave :</label>
+            <div class="col-sm-9">
+             <textarea class="form-control"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'employee/master.html'%}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+<div id="accordion" class="accordion">
+  <div class="card">
+    <div class="card-header" id="payrollHeading">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#payrollCollapse" aria-expanded="true" aria-controls="payrollCollapse">
+          Payroll
+        </button>
+      </h5>
+    </div>
+
+    <div id="payrollCollapse" class="collapse show" aria-labelledby="payrollHeading" data-parent="#accordion">
+      <div class="card-body">
+        <h6>Item 1</h6>
+        <p>Content for Item 1</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="item2Heading">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#item2Collapse" aria-expanded="false" aria-controls="item2Collapse">
+          Item 2
+        </button>
+      </h5>
+    </div>
+    <div id="item2Collapse" class="collapse" aria-labelledby="item2Heading" data-parent="#accordion">
+      <div class="card-body">
+        <h6>Item 2</h6>
+        <p>Content for Item 2</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

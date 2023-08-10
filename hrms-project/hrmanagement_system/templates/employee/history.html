@@ -1,0 +1,55 @@
+{% extends 'employee/master.html'%}
+
+{% load static %}
+
+{% block content %}
+
+<section class="mt-5">
+    <div class=" pt-5 text-center">
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a href="{% url 'employee:hrleave' %}" class="btn btn-outline-secondary">Apply Leave</a>
+        <a  href="{% url 'employee:pending' %}" class="btn btn-outline-secondary">Pending</a>
+        <a  href="{% url 'employee:history' %}" class="btn  btn-primary">History</a>
+      </div>
+    </div>
+    <div class="container">
+        <div class="row mt-5 mb-5">
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                    <div class="text-center" hidden>
+                    <img src="{% static 'images/pending.jpg' %}" alt="" style="width:600px; height: 400px;">
+                    <h5 class="text-muted">There are no pending records of any leave transaction</h5>
+                    </div>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              <span class="ms-0 text-muted">Category</span> <span class="ms-auto text-muted">Leave Type</span> <span class="ms-auto text-muted">No. of days</span> <span class="ms-auto text-success">APPROVED</span>
+                            </button>
+                          </h2>
+                          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body list-group list-group-flush">
+                                
+                            <div class="list-group-item">
+                            <div class="fs-6 text-muted">Duration : 07 Jun 2023(Session 1) to 07 Jun 2023 (Session 2)</div>
+                            <div class="fs-6 text-muted">Reason : due to sever back pain consultation</div>
+                            </div>
+                            <div class="d-flex ">
+                                <span class="p-2 ms-2 text-muted">Applied on</span> <span class="p-2 ms-auto"><a href="">View Details</a> </span>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        
+                      </div>
+                </div>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+</section>
+
+{% endblock %}  

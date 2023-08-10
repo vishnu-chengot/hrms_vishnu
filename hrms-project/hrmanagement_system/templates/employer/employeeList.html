@@ -1,0 +1,78 @@
+{% extends 'employer/master.html'%}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+
+  <div class="row mt-5">
+    <h5 class="mt-4">Employee List</h5>
+    <div class="col-md-12">
+      <!-- First horizontal ruler -->
+      <hr>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+     
+      <span class="float-end"><a href="employeeadd" class="btn btn-outline-info myhover fw-bold">Add Employee</a></span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Second horizontal ruler -->
+      <hr>
+    </div>
+  </div>
+    <div class="row mt-3">
+        <div class="col-sm-12 mt-3">
+          <div class="card">
+            <!-- <div class="card-header"> Employee List  <span class="float-end"><a href="employeeadd" class="btn btn-outline-primary">Add Employee</a> </span></div> -->
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email ID</th>
+                        <th>Contact Number</th>
+                        <th>Department</th>
+                        <th>Position</th>
+                        <th>Employee ID</th>
+                        <th>Reporting Manger</th>
+                        <th>Date of joining</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for employee_info in  employee_company_info %}
+                    
+                      <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <th>{{ employee_info.employee.firstName  }} {{ employee_info.employee.lastName }}</th>
+                        <td>{{ employee_info.employee.empEmail }}</td>
+                        <td>{{ employee_info.employee.contactNo }}</td>
+                        <td>{{ employee_info.department_fk.dpartment_name }}</td>
+                        <td>{{ employee_info.position_fk.position_name }}</td>
+                        <td>{{ employee_info.employeeID }}</td>
+                        <td>{{ employee_info.reportingManger }}</td>
+                        <td>{{ employee_info.dateJoining }}</td>
+                        <td></td>
+                      </tr>
+                      
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                  </div>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+</div>
+
+{% endblock %}

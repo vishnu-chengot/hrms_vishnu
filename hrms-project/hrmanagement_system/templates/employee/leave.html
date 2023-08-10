@@ -1,0 +1,194 @@
+{% extends 'employee/master.html'%}
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="container">
+ <div class="mt-5 pt-5">
+  <div class="row text-center">
+    <div class="col-md-3 col-sm-6 mb-3">
+      <div class="card">
+        <div class="card-header">Casual Leave</div>
+        <div class="card-body position-relative cont">
+          <div class="overlay position-absolute top-0 start-0 end-0 bottom-0 bg-secondary  bg-opacity-0">
+            <div class="text position-absolute   text-center text-light fs-5">
+              <span class="fs-6">Remaning Leave</span>
+              <div class="number">12</div>
+            </div>
+          </div>
+          <img src="{% static 'images/calendar.png' %}" class="img-fluid my-img" alt="...">
+          <div class="mt-3">
+            <p>Available	: <span>12</span></p>
+             <p>Taken	: <span>0</span></p>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3 ">
+      <div class="card">
+        <div class="card-header">Earned Leave</div>
+        <div class="card-body position-relative cont">
+          <div class="overlay position-absolute top-0 start-0 end-0 bottom-0 bg-secondary  bg-opacity-75">
+            <div class="text position-absolute   text-center text-light fs-5">
+              <span class="fs-6">Remaning Leave</span>
+              <div class="number">2</div>
+            </div>
+          </div>
+          <img src="{% static 'images/warning.png' %}" class="img-fluid my-img" alt="...">
+          <div class="mt-3">
+            <p>Available	:<span>2</span></p>
+             <p>Taken	: <span>0</span></p>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3">
+      <div class="card">
+        <div class="card-header">Leave Without Pay</div>
+        <div class="card-body position-relative cont">
+          <div class="overlay position-absolute top-0 start-0 end-0 bottom-0 bg-secondary  bg-opacity-75">
+            <div class="text position-absolute   text-center text-light fs-5">
+              <span class="fs-6">Remaning Leave</span>
+              <div class="number">0</div>
+            </div>
+          </div>
+          <img src="{% static 'images/leave-131964752935242149.png' %}" class="img-fluid my-img" alt="...">
+          <div class="mt-3">
+            <p>Available	: <span>0</span></p>
+             <p>Taken	: <span>0</span></p>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3">
+      <div class="card">
+        <div class="card-header">Sick Leave</div>
+        <div class="card-body position-relative cont">
+          <div class="overlay position-absolute top-0 start-0 end-0 bottom-0 bg-secondary  bg-opacity-75">
+            <div class="text position-absolute   text-center text-light fs-5">
+              <span class="fs-6">Remaning Leave</span>
+              <div class="number">6</div>
+            </div>
+          </div>
+        <img src="{% static 'images/stethoscope.png' %}" class="img-fluid my-img" alt="...">
+        <div class="mt-3">
+          <p>Available	: <span>6</span></p>
+           <p>Taken	: <span>0</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center mt-5">
+
+  
+  <!-- <div class="btn-group text-center" role="group" aria-label="Basic checkbox toggle button group">
+    <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" checked>
+    <label class="btn btn-outline-primary" for="btncheck1">Apply Leave</label>
+  
+    <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+    <label class="btn btn-outline-primary" for="btncheck2">Pending</label>
+  
+    <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+    <label class="btn btn-outline-primary" for="btncheck3">History</label>
+  </div> -->
+
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <a href="{% url 'employee:hrleave' %}" class="btn btn-primary">Apply Leave</a>
+    <a  href="{% url 'employee:pending' %}" class="btn btn-outline-secondary">Pending</a>
+    <a  href="{% url 'employee:history' %}" class="btn btn-outline-secondary">History</a>
+  </div>
+</div>
+  <div class="row mt-5 mb-5">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">Leave Application</div>
+        <div class="card-body">
+          <!-- <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Employee ID</label>
+          </div> -->
+          <div class="mb-3">
+            <label for="exampleInputEmployeId" class="form-label">Employee ID</label>
+            <input type="text" class="form-control w-25" id="exampleInputEmployeId"  disabled >
+            
+          </div>
+          <div class="col-md-4">
+            <label for="inputState" class="form-label">Leave Type</label>
+            <select id="inputState" class="form-select">
+              <option selected>Select</option>
+              <option>Causal Leave</option>
+              <option>Earned Leave</option>
+              <option>Leave Without Pay</option>
+              <option>Sick Leave</option>
+            </select>
+          </div>
+          <div class="row mt-2">
+           
+            <div class="col-sm-5 mt-2">
+              <div class="mb-2">
+                <label for="fromDate" class="form-label">From Date</label>
+               <input type="date" class="form-control" id="fromDate" >
+              </div>
+            </div>
+            <div class="col-sm-5 mt-2">
+              <div class="mb-2">
+                <label for="session" class="form-label">Session</label>
+                <select class="form-select" aria-label="Default select example">
+                  <option value="1" selected>Session 1</option>
+                  <option value="2">Session 2</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-3">
+           
+            <div class="col-sm-5 mt-2">
+              <div class="mb-2">
+                <label for="fromDate" class="form-label">To Date</label>
+               <input type="date" class="form-control" id="fromDate" placeholder="name@example.com">
+              </div>
+            </div>
+            <div class="col-sm-5 mt-2">
+              <div class="mb-2">
+                <label for="session" class="form-label">Session</label>
+                <select class="form-select" aria-label="Default select example">
+                  <option value="1" selected>Session 1</option>
+                  <option value="2">Session 2</option>
+                </select>
+              </div>              
+            </div>
+          </div>
+          
+          <div class="form-floating mt-3">
+            <input type="email" class="form-control w-25 border border-top-0 border-end-0 border-start-0 border-info border-2 rounded-0" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Notify</label>
+          </div>
+          <div class="mt-3">
+            <label for="exampleNumber" class="form-label">Contact Number</label>
+            <input type="number" class="form-control w-25" id="exampleNumber">
+          </div>
+          <div class="mt-3">
+            <label for="exampleReson" class="form-label">Reson</label>
+            <textarea class="form-control" placeholder="Enter a Reson" id="exampleReson" style="height: 100px"></textarea>
+          </div>  
+          <div class="mt-3">
+            <label for="examplefile" class="form-label">Attach File</label>
+            <input type="file" class="form-control" id="examplefile">
+          </div>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+            <button class="btn btn-info me-md-2 text-light" type="button">submit</button>
+            <button class="btn btn-outline-info " type="button">cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+{% endblock %}

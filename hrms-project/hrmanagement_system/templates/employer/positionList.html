@@ -1,0 +1,176 @@
+{% extends 'employer/master.html'%}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5 pt-5">
+
+    <div class="row mt-4 ">
+        <div class="col-sm-5">
+          <div class="card border-0">
+            <div class="card-header text-center bg-primary border-0 text-light  rounded-pill fs-5 ">Add New Department</div>
+            <div class="card-body ">
+             
+                <form method="post" id="myForm">
+                  {% csrf_token %}
+                    <div class="mb-3">
+                      <label for="positionAdd" class="form-label">Position Name </label>
+                      <input type="text" class="form-control" id="positionAdd"  name="positionName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="positionAdd" class="form-label">Department</label>
+                        <select class="form-select"  name="depNames">
+                            <option value="">select one</option>
+                            {% for dep in department %} 
+                            <option value="{{ dep.id }}">{{ dep.dpartment_name }}</option>
+                            {% endfor %}
+                          </select>
+                      </div>
+                    
+                    <button type="submit" class="btn btn-outline-primary" name="submit">Submit</button>
+                  </form>
+    
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-7">
+          <div class="card">
+            <div class="card-header text-center bg-primary text-light fs-5 ">Position List</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Sno</th>
+                        <th>Position</th>
+                        <th>Department</th>
+                        <th>Action</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for pos in position %}
+                      <tr>
+                        <th>{{ forloop.counter }}</th>
+                        <td>{{ pos.position_name }}</td>
+                        <td>{{ pos.department.dpartment_name }}</td>
+                        <td hidden > {{ pos.id }} </td>
+                        <td><button type="button"  class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="btn">edit</button> <a href="{% url 'employer:deleteposition' pos.id %}" class="btn btn-outline-danger">Delete</a></td>
+                      </tr>
+                      {% endfor %} 
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="post">
+              {% csrf_token %}
+                <div class="mb-3">
+                  <input type="text" name="pos_id" id="positionId" hidden>
+                  <label for="positionAdd" class="form-label">Position Name </label>
+                  <input type="text" class="form-control" id="positionAjax"  name="posName">
+                </div>
+                <div class="mb-3">
+                    <label for="positionAdd" class="form-label">Department</label>
+                    <select class="form-select" id="posSelect" name="posDepart" >
+                        <option selected>select one</option>
+                        {% for dep in department %} 
+                        <option value="{{ dep.id }}">{{ dep.dpartment_name }}</option>
+                        {% endfor %}
+                      </select>
+                  </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" name="update">Update</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function(){
+      $.ajaxSetup({
+              headers: {
+                "X-CSRFToken": '{{ csrf_token }}'
+              }
+          })
+      $(".btn").click(function(){
+        var posId = $(this).closest('tr').find('td:hidden').text();
+           
+            // console.log(posId)
+            $.ajax({
+              url:"{% url 'employer:updatePos' %}",
+              data:{
+                'pos_id':posId ,
+                 
+  
+              },
+              method : 'POST',
+              dataType: 'json',
+              success: function(response){
+                // console.log(response.department_id)
+                $('#positionId').val(response.pos_id)
+                $('#positionAjax').val(response.p_name)
+                $("#posSelect").val(response.department_id);
+                // $('#current_stock').val(response.pstock)
+              
+                
+              }
+              
+              
+            })
+          })
+          
+    })
+  </script>
+
+<script>
+  $(document).ready(function () {
+      
+      $('#myForm').validate({
+        
+          rules: {
+            positionName: {
+                  required: true
+              },
+              depNames: {
+                required: true
+              }
+            
+          },
+          messages: {
+            positionName: {
+              required:'Please enter position name' 
+            },
+            depNames: {
+              required:'please select department'
+            } 
+            
+          }
+         
+      });
+  });
+</script>
+{% endblock %}

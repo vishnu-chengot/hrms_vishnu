@@ -1,0 +1,33 @@
+{% extends 'employee/master.html'%}
+
+{% load static %}
+
+{% block content %}
+
+<section class="mt-5">
+    <div class=" pt-5 text-center">
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a href="{% url 'employee:hrleave' %}" class="btn  btn-outline-secondary">Apply Leave</a>
+        <a  href="{% url 'employee:pending' %}" class="btn btn-primary">Pending</a>
+        <a  href="{% url 'employee:history' %}" class="btn btn-outline-secondary">History</a>
+      </div>
+    </div>
+    <div class="container">
+    <div class="row mt-5 mb-5">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+                <div class="text-center">
+                   
+             <img src="{% static 'images/pending.jpg' %}" alt="" style="width:600px; height: 400px;">
+             <h5 class="text-muted">There are no pending records of any leave transaction</h5>
+            </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+</section>
+
+{% endblock %}  
